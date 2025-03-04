@@ -1,0 +1,13 @@
+#price-calculator .calc-autocomplete-container {
+            position: relative; /* Add this */
+            max-height: 300px; /* Limit the height */
+        }
+        #price-calculator .calc-autocomplete-items {
+            position: absolute;
+            width: calc(100% - 2px); /* Account for input borders */
+            top: 100%;
+        }
+        #price-calculator {
+            position: static;
+            overflow: visible !important;
+        }
