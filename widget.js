@@ -199,7 +199,7 @@
             const pickupCoords = await calcGetCoordinates(calcPickup.value);
             const dropoffCoords = await calcGetCoordinates(calcDropoff.value);
 
-            const response = await fetch(`http://router.project-osrm.org/route/v1/driving/${pickupCoords.lon},${pickupCoords.lat};${dropoffCoords.lon},${dropoffCoords.lat}?overview=false`);
+            const response = await fetch(`https://router.project-osrm.org/route/v1/driving/${pickupCoords.lon},${pickupCoords.lat};${dropoffCoords.lon},${dropoffCoords.lat}?overview=false`);
             const data = await response.json();
 
             if (data.routes.length > 0) {
