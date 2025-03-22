@@ -292,6 +292,7 @@ footer {
     justify-content: space-between;
     flex-wrap: wrap;
     margin-bottom: 30px;
+    gap: 20px;
 }
 
 .footer-logo img {
@@ -336,6 +337,7 @@ footer {
 .newsletter-signup form {
     display: flex;
     align-items: center;
+    max-width: 100%;
 }
 
 .newsletter-signup input {
@@ -437,15 +439,51 @@ footer {
         flex-direction: column;
         align-items: center;
         text-align: center;
+        gap: 30px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+
+    .column {
+        margin-right: 0;
+        width: 100%;
+        max-width: 250px;
+    }
+
+    .newsletter-signup {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .newsletter-signup form {
+        width: 100%;
+    }
+
+    .newsletter-signup input {
+        width: 80%;
     }
 
     .footer-bottom {
         flex-direction: column;
         text-align: center;
+        gap: 15px;
+        padding-top: 15px;
     }
 
     .social-media,
     .legal-links {
         margin-bottom: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .legal-links a {
+        margin-right: 0;
     }
 }

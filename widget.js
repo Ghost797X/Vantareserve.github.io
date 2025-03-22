@@ -17,15 +17,7 @@
                         <div class="calc-autocomplete-items"></div>
                     </div>
                 </div>
-                <div class="calc-form-group">
-                    <label>Number of Vehicles</label>
-                    <div class="calc-car-quantity-controls">
-                        <button type="button" id="calcDecrease">-</button>
-                        <span id="calcQuantityDisplay">1</span>
-                        <button type="button" id="calcIncrease">+</button>
-                    </div>
-                    <input type="hidden" id="calcCarQuantity" value="1">
-                </div>
+
                 <div class="calc-price-display">
                     <p>Estimated Total: <span id="calcPrice">$0.00</span></p>
                 </div>
@@ -106,21 +98,10 @@
         #price-calculator .calc-autocomplete-items div:hover {
             background-color: #e9e9e9;
         }
-        #price-calculator .calc-car-quantity-controls {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.6rem;
-            color: #333;
-        }
-        #price-calculator .calc-car-quantity-controls button {
-            padding: 0.25rem 0.5rem;
-            font-size: 1rem;
-            cursor: pointer;
-        }
+
         #price-calculator .calc-price-display {
             text-align: center;
-            margin: 1rem 0;
+            margin: 0.6rem 0;
             color: #333;
         }
         #price-calculator .calc-btn {
@@ -153,10 +134,7 @@
     const calcDropoff = document.getElementById('dropoff');
     const calcPrice = document.getElementById('calcPrice');
     const calcForm = document.getElementById('calcForm');
-    const calcCarQuantity = document.getElementById('calcCarQuantity');
-    const calcQuantityDisplay = document.getElementById('calcQuantityDisplay');
-    const calcDecrease = document.getElementById('calcDecrease');
-    const calcIncrease = document.getElementById('calcIncrease');
+
     let calcDistance = 0;
 
     async function calcGetCoordinates(address) {
@@ -211,7 +189,6 @@
     }
 
     async function calcCalculatePrice() {
-        const cars = parseInt(calcCarQuantity.value);
         const ratePerMile = 2.50;
         const basePrice = 20.00;
         const ratePerMinute = 1.20;
@@ -228,8 +205,7 @@
             if (data.routes.length > 0) {
                 calcDistance = data.routes[0].distance / 1609.34;
                 const durationMinutes = data.routes[0].duration / 60;
-                const totalForOneCar = basePrice + (calcDistance * ratePerMile) + (durationMinutes * ratePerMinute);
-                const total = (totalForOneCar * cars).toFixed(2);
+                const total = (basePrice + (calcDistance * ratePerMile) + (durationMinutes * ratePerMinute)).toFixed(2);
                 calcPrice.textContent = `$${total}`;
             } else {
                 throw new Error('Route not found');
@@ -259,25 +235,7 @@
         alert('Booking confirmed - check your email for details');
     });
 
-    calcDecrease.addEventListener('click', () => {
-        let current = parseInt(calcCarQuantity.value);
-        if (current > 1) {
-            current--;
-            calcCarQuantity.value = current;
-            calcQuantityDisplay.textContent = current;
-            calcCalculatePrice();
-        }
-    });
 
-    calcIncrease.addEventListener('click', () => {
-        let current = parseInt(calcCarQuantity.value);
-        if (current < 3) {
-            current++;
-            calcCarQuantity.value = current;
-            calcQuantityDisplay.textContent = current;
-            calcCalculatePrice();
-        }
-    });
 
     // Initialize
     calcCalculatePrice();
