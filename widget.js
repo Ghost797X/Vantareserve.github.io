@@ -191,7 +191,7 @@
     async function calcCalculatePrice() {
         const ratePerMile = 2.50;
         const basePrice = 20.00;
-        const ratePerMinute = 1.20;
+        const ratePerMinute = 1.50;
 
         if (!calcPickup.value || !calcDropoff.value) return;
 
